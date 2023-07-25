@@ -4,10 +4,11 @@ library(tokenizers)
 library(rjson)
 
 path <-	file.path("scratch", "users")
-corpus <- file.path("corpus")
+input_path <- file.path("farmshare", "learning", "data") 
+corpus <- file.path("emerson")
 outputs	<- file.path("outputs")
 user <- Sys.getenv("LOGNAME")
-input_loc <- file.path("/", path, user, corpus, "/")
+input_loc <- file.path("/", input_path, user, corpus, "/")
 output_loc = file.path("/", path, user, outputs, "/")
 
 files <- dir(input_loc, full.names = TRUE)
