@@ -3,11 +3,12 @@ install.packages("rjson", repos = "http://cran.us.r-project.org")
 library(tokenizers)
 library(rjson)
 
-path <-	file.path("scratch", "users")
-corpus <- file.path("corpus")
-outputs	<- file.path("outputs")
+path <- file.path("/scratch", "users")
+input_path <- file.path("/farmshare", "learning", "data")
+corpus <- file.path("emerson")
+outputs <- file.path("outputs")
 user <- Sys.getenv("LOGNAME")
-input_loc <- file.path("/", path, user, corpus, "/")
+input_loc <- file.path(input_path, corpus)
 output_loc = file.path("/", path, user, outputs, "/")
 
 files <- dir(input_loc, full.names = TRUE)
@@ -27,7 +28,3 @@ df$tokens <- tokenize_words(df[,2])
 #output to json
 jsonData <- toJSON(df)
 write(jsonData,paste(output_loc, "tokens.json", sep =""))
-
-#or csv
-write.csv(df,paste(output_loc, "tokens.csv", sep =""))
-
